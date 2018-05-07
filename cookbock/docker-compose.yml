@@ -1,14 +1,17 @@
 version: '2'
 services:
-    node-express:
-      build: './node-express'
-      image: node-express:0.0.2
-      ports:
-      - "8080:8081"
-
     mongo-db:
       build: './mongo-db'
       image: mongo-db:0.0.2
       ports:
       - "27017:27017"
-    
+
+    node-express:
+      build: './node-express'
+      image: node-express:0.0.2
+      ports:
+      - "8080:8081"
+      volumes:
+      - ./node-express:/app
+      depends_on:
+      - mongo-db
